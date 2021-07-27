@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using it.example.dotnetcore5.dal.dapper.Interfaces;
 using it.example.dotnetcore5.domain.Interfaces.Models;
 using it.example.dotnetcore5.domain.Interfaces.Repositories;
+using it.example.dotnetcore5.domain.Models;
 using System.Collections.Generic;
 
 namespace it.example.dotnetcore5.dal.dapper.Repositories
@@ -31,7 +31,7 @@ namespace it.example.dotnetcore5.dal.dapper.Repositories
             IEnumerable<IPost> posts = null;
             using (var connection = _connectionFactory.GetConnection())
             {
-                posts = connection.Query<IPost>("SELECT Id, Title, Text FROM Posts ORDER BY CreateDate DESC");
+                posts = connection.Query<Post>("SELECT Id, Title, Text FROM Posts ORDER BY CreateDate DESC");
             }
             return posts;
         }
@@ -47,7 +47,7 @@ namespace it.example.dotnetcore5.dal.dapper.Repositories
             using (var connection = _connectionFactory.GetConnection())
             {
                 // TOP 1 is not a command for SQLite, remove
-                post = connection.QueryFirstOrDefault<IPost>("SELECT * FROM Posts WHERE Id = @PostId", new { PostId = id });
+                post = connection.QueryFirstOrDefault<Post>("SELECT * FROM Posts WHERE Id = @PostId", new { PostId = id });
             }
             return post;
         }

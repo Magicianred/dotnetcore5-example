@@ -1,4 +1,4 @@
-﻿using it.example.dotnetcore5.dal.dapper.Interfaces;
+﻿using it.example.dotnetcore5.domain.Interfaces.Repositories;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;

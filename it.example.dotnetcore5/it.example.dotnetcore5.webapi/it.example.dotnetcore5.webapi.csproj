@@ -5,10 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Resources\posts.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\posts.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\it.example.dotnetcore5.bl\it.example.dotnetcore5.bl.csproj" />
+    <ProjectReference Include="..\it.example.dotnetcore5.dal.dapper\it.example.dotnetcore5.dal.dapper.csproj" />
+    <ProjectReference Include="..\it.example.dotnetcore5.dal.json\it.example.dotnetcore5.dal.json.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.domain\it.example.dotnetcore5.domain.csproj" />
   </ItemGroup>
 

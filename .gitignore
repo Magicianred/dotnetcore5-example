@@ -118,3 +118,4 @@ dist
 /it.example.dotnetcore5/it.example.dotnetcore5.domain/bin/Debug/net5.0
 /it.example.dotnetcore5/it.example.dotnetcore5.service/obj
 /it.example.dotnetcore5/it.example.dotnetcore5.webapi/bin/Debug/net5.0
+/it.example.dotnetcore5/it.example.dotnetcore5.webapi/appsettings.Development.json

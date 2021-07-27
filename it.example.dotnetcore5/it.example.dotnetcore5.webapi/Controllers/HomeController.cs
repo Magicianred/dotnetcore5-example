@@ -1,5 +1,5 @@
-﻿using it.example.dotnetcore5.domain.Interfaces.Services;
-using it.example.dotnetcore5.domain.Models;
+﻿using it.example.dotnetcore5.domain.Interfaces.Models;
+using it.example.dotnetcore5.domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -33,14 +33,11 @@ namespace it.example.dotnetcore5.webapi.Controllers
         /// </summary>
         /// <returns>list of Posts</returns>
         [HttpGet]
-        public IEnumerable<Post> Get()
+        public IEnumerable<IPost> Get()
         {
             var posts = _postsService.GetAll();
 
-            // TO DO : mapping interface -> model
-            //return posts;
-
-            return null;
+            return posts;
         }
 
         /// <summary>
@@ -50,13 +47,11 @@ namespace it.example.dotnetcore5.webapi.Controllers
         /// <param name="id"></param>
         /// <returns>the post with requested id</returns>
         [HttpGet("{id}")]
-        public Post Get(int id)
+        public IPost Get(int id)
         {
             var post = _postsService.GetById(id);
 
-            // TO DO : mapping interface -> model
-            //return post;
-            return null;
+            return post;
         }
     }
 }

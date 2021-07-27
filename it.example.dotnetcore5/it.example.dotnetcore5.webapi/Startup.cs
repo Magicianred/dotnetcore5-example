@@ -1,4 +1,7 @@
+using it.example.dotnetcore5.bl.Services;
 using it.example.dotnetcore5.domain.Interfaces.Models;
+using it.example.dotnetcore5.domain.Interfaces.Repositories;
+using it.example.dotnetcore5.domain.Interfaces.Services;
 using it.example.dotnetcore5.domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+
+// for dapper
+using it.example.dotnetcore5.dal.dapper.Repositories;
+
+// for json file
+//using it.example.dotnetcore5.dal.json.Repositories;
 
 namespace it.example.dotnetcore5.webapi
 {
@@ -30,10 +39,11 @@ namespace it.example.dotnetcore5.webapi
 
             services.AddScoped<IPost, Post>();
 
-            // TO DO
-            //services.AddScoped<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
-            //services.AddScoped<IPostsRepository, PostsRepository>();
-            //services.AddScoped<IPostsService, PostsService>();
+            // TO DO : only for dapper - move in dapper project
+            services.AddScoped<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
+
+            services.AddScoped<IPostsRepository, PostsRepository>();
+            services.AddScoped<IPostsService, PostsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
