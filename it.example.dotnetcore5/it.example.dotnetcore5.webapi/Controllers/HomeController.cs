@@ -1,5 +1,6 @@
 ﻿using it.example.dotnetcore5.domain.Interfaces.Models;
 using it.example.dotnetcore5.domain.Interfaces.Services;
+using it.example.dotnetcore5.domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -52,6 +53,15 @@ namespace it.example.dotnetcore5.webapi.Controllers
             var post = _postsService.GetById(id);
 
             return post;
+        }
+
+        [HttpPost]
+        public void Add()
+        {
+            Post newPost = new Post();
+            newPost.Title = "New test post";
+            newPost.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis enim eu augue tincidunt tincidunt. Nam luctus pharetra tortor, sit amet sodales odio bibendum non.";
+            _postsService.Add(newPost);
         }
     }
 }

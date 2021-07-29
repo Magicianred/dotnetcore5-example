@@ -14,7 +14,10 @@ using Microsoft.OpenApi.Models;
 using it.example.dotnetcore5.dal.dapper.Repositories;
 
 // for json file
-//using it.example.dotnetcore5.dal.json.Repositories;
+// using it.example.dotnetcore5.dal.json.Repositories;
+
+// for fake repository
+//using it.example.dotnetcore5.dal.fake.Repositories;
 
 namespace it.example.dotnetcore5.webapi
 {
@@ -43,6 +46,10 @@ namespace it.example.dotnetcore5.webapi
             services.AddScoped<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
 
             services.AddScoped<IPostsRepository, PostsRepository>();
+            
+            // for fake repository
+            //services.AddScoped<IPostsRepository, FakePostsRepository>();
+            
             services.AddScoped<IPostsService, PostsService>();
         }
 

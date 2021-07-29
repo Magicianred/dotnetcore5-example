@@ -7,5 +7,6 @@ namespace it.example.dotnetcore5.domain.Interfaces.Services
     {
         public List<IPost> GetAll();
         public IPost GetById(int id);
+        public void Add(IPost entry);
     }
 }

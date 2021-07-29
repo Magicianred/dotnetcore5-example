@@ -1,4 +1,5 @@
-﻿using it.example.dotnetcore5.domain.Interfaces.Models;
+﻿using it.example.dotnetcore5.dal.json.Models;
+using it.example.dotnetcore5.domain.Interfaces.Models;
 using it.example.dotnetcore5.domain.Interfaces.Repositories;
 using it.example.dotnetcore5.domain.Models;
 using Newtonsoft.Json;
@@ -12,14 +13,12 @@ namespace it.example.dotnetcore5.dal.json.Repositories
     /// </summary>
     public class PostsRepository : IPostsRepository
     {
-        private List<IPost> _source;
-
         /// <summary>
         /// Constructor
         /// </summary>
         public PostsRepository()
         {
-            _source = this.LoadData();
+            this.LoadData();
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace it.example.dotnetcore5.dal.json.Repositories
         /// <returns>list of post</returns>
         public IEnumerable<IPost> GetAll()
         {
-            IEnumerable<IPost> posts = _source;
+            IEnumerable<IPost> posts = MemoryCache<Post>.Items;
 
             return posts;
         }
@@ -40,9 +39,18 @@ namespace it.example.dotnetcore5.dal.json.Repositories
         /// <returns>the post, null if id not found</returns>
         public IPost GetById(int id)
         {
-            IPost post = _source.Find(item => item.Id == id);
+            IPost post = MemoryCache<Post>.Items.Find(item => item.Id == id);
 
             return post;
+        }
+
+        public void AddPost(IPost item)
+        {
+            Post newEntry = (Post)item;
+            newEntry.Id = MemoryCache<Post>.Items.Max(item => item.Id) + 1;
+            MemoryCache<Post>.Items.Add(newEntry);
+
+            // TO DO save items into json file
         }
 
 
