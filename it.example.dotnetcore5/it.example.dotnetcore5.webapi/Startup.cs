@@ -24,7 +24,10 @@ using it.example.dotnetcore5.bl.Extensions;
 // using it.example.dotnetcore5.dal.ef.sqlserver.Extensions;
 
 // for ef mysql repository
-using it.example.dotnetcore5.dal.ef.mysql.Extensions;
+//using it.example.dotnetcore5.dal.ef.mysql.Extensions;
+
+// for ef sqlite repository
+using it.example.dotnetcore5.dal.ef.sqlite.Extensions;
 
 namespace it.example.dotnetcore5.webapi
 {
@@ -59,7 +62,10 @@ namespace it.example.dotnetcore5.webapi
             //services.AddDalJson();
 
             // add mysql dal
-            services.AddDalMySql(Configuration.GetConnectionString("myBlog_mysql"));
+            //services.AddDalMySql(Configuration.GetConnectionString("myBlog_mysql"));
+
+            // add sqlite dal
+            services.AddDalSqlite(Configuration.GetConnectionString("myBlog_sqlite"));
 
             // Configuration for Sql Server
             //services.AddDalSqlServer(Configuration.GetConnectionString("myBlog_mssql"));
