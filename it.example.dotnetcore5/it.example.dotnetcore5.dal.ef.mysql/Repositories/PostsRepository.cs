@@ -1,25 +1,25 @@
-﻿using it.example.dotnetcore5.dal.ef.sqlserver.EfModels;
-using it.example.dotnetcore5.dal.ef.sqlserver.Factories;
+﻿using it.example.dotnetcore5.dal.ef.mysql.EfModels;
+using it.example.dotnetcore5.dal.ef.mysql.Factories;
 using it.example.dotnetcore5.domain.Interfaces.Models;
 using it.example.dotnetcore5.domain.Interfaces.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using ModelPost = it.example.dotnetcore5.domain.Models.Post;
 
-namespace it.example.dotnetcore5.dal.ef.sqlserver.Repositories
+namespace it.example.dotnetcore5.dal.ef.mysql.Repositories
 {
     /// <summary>
     /// Repository of posts
     /// </summary>
     public class PostsRepository : IPostsRepository
     {
-        protected MyBlog_02Context _context;
+        protected MyblogContext _context;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="configuration"></param>
-        public PostsRepository(MyBlog_02Context context)
+        public PostsRepository(MyblogContext context)
         {
             this._context = context;
         }

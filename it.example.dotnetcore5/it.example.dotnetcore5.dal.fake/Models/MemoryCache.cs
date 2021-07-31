@@ -5,6 +5,9 @@ namespace it.example.dotnetcore5.dal.fake.Models
 {
     public static class MemoryCache<T>
     {
-        public static List<T> Items = new List<T>();
+        private static readonly List<T> ts = new();
+        private static List<T> items = ts;
+
+        public static List<T> Items { get => items; set => items = value; }
     }
 }

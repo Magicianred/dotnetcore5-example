@@ -12,7 +12,7 @@ using it.example.dotnetcore5.domain.Extensions;
 using it.example.dotnetcore5.bl.Extensions;
 
 // for fake repository
-using it.example.dotnetcore5.dal.json.Extentions;
+//using it.example.dotnetcore5.dal.json.Extentions;
 
 // for dapper
 //using it.example.dotnetcore5.dal.dapper.Extentions;
@@ -21,7 +21,10 @@ using it.example.dotnetcore5.dal.json.Extentions;
 // using it.example.dotnetcore5.dal.json.Repositories;
 
 // for ef sql server repository
-//using it.example.dotnetcore5.dal.ef.sqlserver.Extentions;
+// using it.example.dotnetcore5.dal.ef.sqlserver.Extensions;
+
+// for ef mysql repository
+using it.example.dotnetcore5.dal.ef.mysql.Extensions;
 
 namespace it.example.dotnetcore5.webapi
 {
@@ -53,7 +56,10 @@ namespace it.example.dotnetcore5.webapi
             //services.AddDalDapper();
 
             // add json dal
-            services.AddDalJson();
+            //services.AddDalJson();
+
+            // add mysql dal
+            services.AddDalMySql(Configuration.GetConnectionString("myBlog_mysql"));
 
             // Configuration for Sql Server
             //services.AddDalSqlServer(Configuration.GetConnectionString("myBlog_mssql"));

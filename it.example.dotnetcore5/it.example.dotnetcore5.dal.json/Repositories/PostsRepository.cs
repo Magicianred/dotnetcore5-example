@@ -18,7 +18,7 @@ namespace it.example.dotnetcore5.dal.json.Repositories
         /// </summary>
         public PostsRepository()
         {
-            this.LoadData();
+            PostsRepository.LoadData();
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace it.example.dotnetcore5.dal.json.Repositories
 
         #region private methods
 
-        private List<IPost> LoadData()
+        private static List<IPost> LoadData()
         {
             var fileContent = System.IO.File.ReadAllText("Resources/posts.json");
             var posts = JsonConvert.DeserializeObject<List<Post>>(fileContent);

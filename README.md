@@ -38,14 +38,34 @@ Add this nuget packages:
 
 ### EF providers
 
-Install the follow nuget package:
-- Microsoft.EntityFrameworkCore
-- Microsoft.EntityFrameworkCore.Design
-
 #### EF SqlServer provider (database first)
 
 Install the follow nuget package:
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.Tools (for scaffolding)
 - Microsoft.EntityFrameworkCore.SqlServer
+
+Set this project as Startup project (in our case this is a library and not the primary project - webapi project)
+
+Open *Package Manager Console* and set this project as "Default project", run this command:
+
+```shell
+Scaffold-DbContext <your_connection_string> Microsoft.EntityFrameworkCore.SqlServer -OutputDir <your_folder_ef> -Table <your_table> -f
+```
+
+- <your_connection_string> : is the connection string of your sql server db
+- <your_folder_ef> : is the folder where you want put model created with scaffolding
+- (optional) <your_table> : use param *-Table* if you want made scaffolding of specific table (without it will be created all the table in database)
+- (optional) -f : use for override existing ef models and Context.
+
+You can run the same command any time you want create or update the ef models.
+
+#### EF MySQL provider (database first)
+
+Install the follow nuget package:
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.Design
 - Microsoft.EntityFrameworkCore.Tools (for scaffolding)
 
 Set this project as Startup project (in our case this is a library and not the primary project - webapi project)
@@ -53,20 +73,53 @@ Set this project as Startup project (in our case this is a library and not the p
 Open *Package Manager Console* and set this project as "Default project", run this command:
 
 ```shell
-Scaffold-DbContext <your_connection_string> Microsoft.EntityFrameworkCore.SqlServer -OutputDir <your_folder_ef> -Table <your_table>  
+Scaffold-DbContext <your_connection_string> MySql.EntityFrameworkCore -OutputDir <your_folder_ef> -Table <your_table> -f
 ```
 
 - <your_connection_string> : is the connection string of your sql server db
 - <your_folder_ef> : is the folder where you want put model created with scaffolding
-- <your_table> : this is optional, use param *-Table* if you want made scaffolding of specific table (without it will be created all the table in database)
+- (optional) <your_table> : use param *-Table* if you want made scaffolding of specific table (without it will be created all the table in database)
+- (optional) -f : use for override existing ef models and Context.
 
 You can run the same command any time you want create or update the ef models.
+#### EF Sqlite provider (database first)
 
-#### EF MySQL provider
+Install the follow nuget package:
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.Tools (for scaffolding)
 
-#### EF Sqlite provider
+
+##### Install Sqlite in local (windows)
+
+1. Download sqlite dll and tools from this website
+https://sqlite.org/download.html
+
+2. Extract file in a folder (for example c:\sqlite)
+
+3. Add path in system variables
+
+4. Install a client for query to db (for example https://dbeaver.io/)
+
+5. Create database
+open console, launch command
+
+```cmd
+sqlite3 <db_name>.db
+```
+
+and then, when sqlite promp is ready
+```cmd
+.databases
+```
+
+now you have a ready database to open with client
+
 
 ### Json file provider
+
+Install the follow nuget package:
+- Newtonsoft.Json
 
 
 

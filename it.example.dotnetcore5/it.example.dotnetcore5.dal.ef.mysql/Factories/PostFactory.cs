@@ -1,10 +1,10 @@
-﻿using it.example.dotnetcore5.dal.ef.sqlserver.EfModels;
+﻿using it.example.dotnetcore5.dal.ef.mysql.EfModels;
 using System.Collections.Generic;
 using System.Linq;
 
 using ModelPost = it.example.dotnetcore5.domain.Models.Post;
 
-namespace it.example.dotnetcore5.dal.ef.sqlserver.Factories
+namespace it.example.dotnetcore5.dal.ef.mysql.Factories
 {
     /// <summary>
     /// Convert Post model domain into a Post Ef entity

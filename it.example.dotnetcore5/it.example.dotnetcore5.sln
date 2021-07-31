@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "it.example.dotnetcore5.webapi", "it.example.dotnetcore5.webapi\it.example.dotnetcore5.webapi.csproj", "{2E7D00CB-1056-4BBF-86FB-A78552955B20}"
 	ProjectSection(ProjectDependencies) = postProject
-		{C63DD986-35BB-401A-A72B-7072AB2FE62E} = {C63DD986-35BB-401A-A72B-7072AB2FE62E}
+		{F7650217-2A8A-433A-80FE-5B65D6292CDE} = {F7650217-2A8A-433A-80FE-5B65D6292CDE}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "it.example.dotnetcore5.domain", "it.example.dotnetcore5.domain\it.example.dotnetcore5.domain.csproj", "{3D235E6B-9700-496E-843D-65DFA25A29B5}"

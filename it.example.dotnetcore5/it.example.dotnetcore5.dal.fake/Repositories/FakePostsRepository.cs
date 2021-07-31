@@ -17,7 +17,7 @@ namespace it.example.dotnetcore5.dal.fake.Repositories
         /// </summary>
         public FakePostsRepository()
         {
-            this.LoadData();
+            FakePostsRepository.LoadData();
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace it.example.dotnetcore5.dal.fake.Repositories
 
         #region private methods
 
-        private void LoadData()
+        private static void LoadData()
         {
             List<Post> posts = MemoryCache<Post>.Items;
 

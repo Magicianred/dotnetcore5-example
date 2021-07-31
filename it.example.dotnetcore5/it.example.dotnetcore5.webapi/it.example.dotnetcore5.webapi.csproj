@@ -13,12 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\it.example.dotnetcore5.bl\it.example.dotnetcore5.bl.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.dal.dapper\it.example.dotnetcore5.dal.dapper.csproj" />
+    <ProjectReference Include="..\it.example.dotnetcore5.dal.ef.mysql\it.example.dotnetcore5.dal.ef.mysql.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.dal.ef.sqlserver\it.example.dotnetcore5.dal.ef.sqlserver.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.dal.fake\it.example.dotnetcore5.dal.fake.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.dal.json\it.example.dotnetcore5.dal.json.csproj" />

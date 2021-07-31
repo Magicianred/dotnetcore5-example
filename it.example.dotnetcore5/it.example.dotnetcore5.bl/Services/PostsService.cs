@@ -11,7 +11,7 @@ namespace it.example.dotnetcore5.bl.Services
     /// </summary>
     public class PostsService : IPostsService
     {
-        private IPostsRepository _postsRepository;
+        private readonly IPostsRepository _postsRepository;
 
         /// <summary>
         /// Constructor
