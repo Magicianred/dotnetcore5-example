@@ -1,8 +1,3 @@
-using it.example.dotnetcore5.bl.Services;
-using it.example.dotnetcore5.domain.Interfaces.Models;
-using it.example.dotnetcore5.domain.Interfaces.Repositories;
-using it.example.dotnetcore5.domain.Interfaces.Services;
-using it.example.dotnetcore5.domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,14 +5,23 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
+// for Domain layer
+using it.example.dotnetcore5.domain.Extensions;
+
+// for BL layer
+using it.example.dotnetcore5.bl.Extensions;
+
+// for fake repository
+using it.example.dotnetcore5.dal.json.Extentions;
+
 // for dapper
-using it.example.dotnetcore5.dal.dapper.Repositories;
+//using it.example.dotnetcore5.dal.dapper.Extentions;
 
 // for json file
 // using it.example.dotnetcore5.dal.json.Repositories;
 
-// for fake repository
-//using it.example.dotnetcore5.dal.fake.Repositories;
+// for ef sql server repository
+//using it.example.dotnetcore5.dal.ef.sqlserver.Extentions;
 
 namespace it.example.dotnetcore5.webapi
 {
@@ -40,17 +44,22 @@ namespace it.example.dotnetcore5.webapi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "it.example.dotnetcore5.webapi", Version = "v1" });
             });
 
-            services.AddScoped<IPost, Post>();
+            services.AddDomain();
 
-            // TO DO : only for dapper - move in dapper project
-            services.AddScoped<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
+            // add fake dal
+            //services.AddDalFake();
 
-            services.AddScoped<IPostsRepository, PostsRepository>();
-            
-            // for fake repository
-            //services.AddScoped<IPostsRepository, FakePostsRepository>();
-            
-            services.AddScoped<IPostsService, PostsService>();
+            // add dapper dal
+            //services.AddDalDapper();
+
+            // add json dal
+            services.AddDalJson();
+
+            // Configuration for Sql Server
+            //services.AddDalSqlServer(Configuration.GetConnectionString("myBlog_mssql"));
+
+            // add BL layer
+            services.AddBL();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -36,10 +36,35 @@ Add this nuget packages:
 - *MySql.Data*
 - *System.Data.SqlClient*
 
+### EF providers
 
-### EF MySQL provider
+Install the follow nuget package:
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.Design
 
-### EF Sqlite provider
+#### EF SqlServer provider (database first)
+
+Install the follow nuget package:
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Tools (for scaffolding)
+
+Set this project as Startup project (in our case this is a library and not the primary project - webapi project)
+
+Open *Package Manager Console* and set this project as "Default project", run this command:
+
+```shell
+Scaffold-DbContext <your_connection_string> Microsoft.EntityFrameworkCore.SqlServer -OutputDir <your_folder_ef> -Table <your_table>  
+```
+
+- <your_connection_string> : is the connection string of your sql server db
+- <your_folder_ef> : is the folder where you want put model created with scaffolding
+- <your_table> : this is optional, use param *-Table* if you want made scaffolding of specific table (without it will be created all the table in database)
+
+You can run the same command any time you want create or update the ef models.
+
+#### EF MySQL provider
+
+#### EF Sqlite provider
 
 ### Json file provider
 

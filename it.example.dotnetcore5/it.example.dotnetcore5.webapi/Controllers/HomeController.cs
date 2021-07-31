@@ -61,6 +61,7 @@ namespace it.example.dotnetcore5.webapi.Controllers
             Post newPost = new Post();
             newPost.Title = "New test post";
             newPost.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis enim eu augue tincidunt tincidunt. Nam luctus pharetra tortor, sit amet sodales odio bibendum non.";
+            newPost.CreateDate = System.DateTime.Now;
             _postsService.Add(newPost);
         }
     }
