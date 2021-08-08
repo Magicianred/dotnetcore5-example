@@ -1,8 +1,10 @@
 ﻿using it.example.dotnetcore5.domain.Interfaces.Models;
 using it.example.dotnetcore5.domain.Interfaces.Repositories;
 using it.example.dotnetcore5.domain.Interfaces.Services;
+using it.example.dotnetcore5.domain.ModelsHelpers;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace it.example.dotnetcore5.bl.Services
 {
@@ -21,18 +23,37 @@ namespace it.example.dotnetcore5.bl.Services
             _postsRepository = postsRepository;
         }
 
-        public void Add(IPost entry)
+        /// <summary>
+        /// Count all post service
+        /// </summary>
+        /// <param name="postParamsHelper">Sorting and filters for posts</param>
+        /// <param name="cancelToken">cancel token</param>
+        /// <returns>List of posts</returns>
+        public long GetCountAll(PostParamsHelper postParamsHelper, CancellationToken cancelToken = default)
         {
-            _postsRepository.AddPost(entry);
+            cancelToken.ThrowIfCancellationRequested();
+            return _postsRepository.GetCountAll(postParamsHelper, cancelToken);
         }
 
         /// <summary>
         /// Retrieve all posts
         /// </summary>
         /// <returns>list of posts</returns>
-        public List<IPost> GetAll()
+        public List<IPost> GetAll(PostParamsHelper postParamsHelper, CancellationToken cancelToken = default)
         {
-            return _postsRepository.GetAll().ToList();
+            cancelToken.ThrowIfCancellationRequested();
+            return _postsRepository.GetAll(postParamsHelper, cancelToken).ToList();
+        }
+
+        /// <summary>
+        /// Add a new post
+        /// </summary>
+        /// <param name="entry">the post data</param>
+        /// <param name="cancelToken">cancel token</param>
+        public void Add(IPost entry, CancellationToken cancelToken = default)
+        {
+            cancelToken.ThrowIfCancellationRequested();
+            _postsRepository.AddPost(entry, cancelToken);
         }
 
         /// <summary>
@@ -40,10 +61,10 @@ namespace it.example.dotnetcore5.bl.Services
         /// </summary>
         /// <param name="id">id of post to retrieve</param>
         /// <returns>the post, null if id not found</returns>
-        public IPost GetById(int id)
+        public IPost GetById(int id, CancellationToken cancelToken = default)
         {
-            return _postsRepository.GetById(id);
+            cancelToken.ThrowIfCancellationRequested();
+            return _postsRepository.GetById(id, cancelToken);
         }
-
     }
 }

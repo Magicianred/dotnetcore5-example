@@ -2,8 +2,10 @@
 using it.example.dotnetcore5.domain.Interfaces.Models;
 using it.example.dotnetcore5.domain.Interfaces.Repositories;
 using it.example.dotnetcore5.domain.Models;
+using it.example.dotnetcore5.domain.ModelsHelpers;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace it.example.dotnetcore5.dal.dapper.Repositories
 {
@@ -24,11 +26,29 @@ namespace it.example.dotnetcore5.dal.dapper.Repositories
         }
 
         /// <summary>
+        /// Count all post service
+        /// </summary>
+        /// <param name="postParamsHelper">Sorting and filters for posts</param>
+        /// <param name="cancelToken">cancel token</param>
+        /// <returns>List of posts</returns>
+        public long GetCountAll(PostParamsHelper postParamsHelper, CancellationToken cancelToken = default)
+        {
+            cancelToken.ThrowIfCancellationRequested();
+            long postsCount = 0;
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                postsCount = connection.QueryFirst<long>("SELECT COUNT(Id) FROM Posts ORDER BY CreateDate DESC");
+            }
+            return postsCount;
+        }
+
+        /// <summary>
         /// Retrieve all Posts items
         /// </summary>
         /// <returns>list of post</returns>
-        public IEnumerable<IPost> GetAll()
+        public IEnumerable<IPost> GetAll(PostParamsHelper postParamsHelper, CancellationToken cancelToken = default)
         {
+            cancelToken.ThrowIfCancellationRequested();
             IEnumerable<IPost> posts = null;
             using (var connection = _connectionFactory.GetConnection())
             {
@@ -42,8 +62,9 @@ namespace it.example.dotnetcore5.dal.dapper.Repositories
         /// </summary>
         /// <param name="id">id of the post to retrieve</param>
         /// <returns>the post, null if id not found</returns>
-        public IPost GetById(int id)
+        public IPost GetById(int id, CancellationToken cancelToken = default)
         {
+            cancelToken.ThrowIfCancellationRequested();
             IPost post = null;
             using (var connection = _connectionFactory.GetConnection())
             {
@@ -53,8 +74,9 @@ namespace it.example.dotnetcore5.dal.dapper.Repositories
             return post;
         }
 
-        public void AddPost(IPost item)
+        public void AddPost(IPost item, CancellationToken cancelToken = default)
         {
+            cancelToken.ThrowIfCancellationRequested();
             item.CreateDate = DateTime.Now;
             using var connection = _connectionFactory.GetConnection();
             var sqlInsert = "INSERT INTO Posts (Title, Text, CreateDate) VALUES (@Title, @Text, @CreateDate)";

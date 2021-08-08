@@ -46,10 +46,10 @@ namespace it.example.dotnetcore5.bl.tests.unit.Services
         {
             // Arrange
             var mockPosts = PostsHelper.GetDefaultMockData();
-            _postsRepository.GetAll().Returns(mockPosts);
+            _postsRepository.GetAll(null).Returns(mockPosts);
 
             // Act
-            var posts = _sut.GetAll();
+            var posts = _sut.GetAll(null);
 
             // Assert
             Assert.IsNotNull(posts);
