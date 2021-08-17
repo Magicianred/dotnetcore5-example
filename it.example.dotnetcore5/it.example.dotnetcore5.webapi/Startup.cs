@@ -11,8 +11,11 @@ using it.example.dotnetcore5.domain.Extensions;
 // for BL layer
 using it.example.dotnetcore5.bl.Extensions;
 
-// for fake repository
-using it.example.dotnetcore5.dal.fake.Extentions;
+//// for fake repository
+//using it.example.dotnetcore5.dal.fake.Extentions;
+
+// for webapi repository
+using it.example.dotnetcore5.dal.webapi.Extentions;
 
 // for dapper
 //using it.example.dotnetcore5.dal.dapper.Extentions;
@@ -52,8 +55,11 @@ namespace it.example.dotnetcore5.webapi
 
             services.AddDomain();
 
-            // add fake dal
-            services.AddDalFake();
+            //// add fake dal
+            //services.AddDalFake();
+
+            // add webapi dal
+            services.AddDalWebApi();
 
             // add dapper dal
             //services.AddDalDapper();

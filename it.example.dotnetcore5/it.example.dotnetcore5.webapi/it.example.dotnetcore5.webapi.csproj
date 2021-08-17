@@ -24,6 +24,7 @@
     <ProjectReference Include="..\it.example.dotnetcore5.dal.ef.sqlserver\it.example.dotnetcore5.dal.ef.sqlserver.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.dal.fake\it.example.dotnetcore5.dal.fake.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.dal.json\it.example.dotnetcore5.dal.json.csproj" />
+    <ProjectReference Include="..\it.example.dotnetcore5.dal.webapi\it.example.dotnetcore5.dal.webapi.csproj" />
     <ProjectReference Include="..\it.example.dotnetcore5.domain\it.example.dotnetcore5.domain.csproj" />
   </ItemGroup>
 
