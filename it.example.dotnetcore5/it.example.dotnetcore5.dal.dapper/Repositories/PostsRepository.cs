@@ -53,12 +53,19 @@ namespace it.example.dotnetcore5.dal.dapper.Repositories
             return post;
         }
 
-        public void AddPost(IPost item)
+        public IPost AddPost(IPost item)
         {
             item.CreateDate = DateTime.Now;
             using var connection = _connectionFactory.GetConnection();
             var sqlInsert = "INSERT INTO Posts (Title, Text, CreateDate) VALUES (@Title, @Text, @CreateDate)";
-            connection.Execute(sqlInsert, item);
+            var newId = connection.Execute(sqlInsert, item);
+
+            return this.GetById(newId);
+        }
+
+        public void RemoveAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

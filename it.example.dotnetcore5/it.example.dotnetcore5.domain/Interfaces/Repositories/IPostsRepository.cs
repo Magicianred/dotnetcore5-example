@@ -5,8 +5,9 @@ namespace it.example.dotnetcore5.domain.Interfaces.Repositories
 {
     public interface IPostsRepository
     {
-        public IEnumerable<IPost> GetAll();
+        IEnumerable<IPost> GetAll();
         IPost GetById(int id);
-        void AddPost(IPost item);
+        IPost AddPost(IPost item);
+        void RemoveAll();
     }
 }

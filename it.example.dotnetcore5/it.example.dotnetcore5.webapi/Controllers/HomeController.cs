@@ -64,7 +64,7 @@ namespace it.example.dotnetcore5.webapi.Controllers
                 Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis enim eu augue tincidunt tincidunt. Nam luctus pharetra tortor, sit amet sodales odio bibendum non.",
                 CreateDate = System.DateTime.Now
             };
-            _postsService.Add(newPost);
+            _postsService.AddPost(newPost);
             _logger.LogInformation("Added fake post!");
         }
     }

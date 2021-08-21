@@ -43,11 +43,18 @@ namespace it.example.dotnetcore5.dal.fake.Repositories
             return post;
         }
 
-        void IPostsRepository.AddPost(IPost item)
+        public IPost AddPost(IPost item)
         {
             Post newEntry = (Post)item;
             newEntry.Id = MemoryCache<Post>.Items.Max(item => item.Id) + 1;
             MemoryCache<Post>.Items.Add(newEntry);
+
+            return this.GetById(newEntry.Id);
+        }
+
+        public void RemoveAll()
+        {
+            MemoryCache<Post>.Items.RemoveAll(x => x.Id > -1);
         }
 
 

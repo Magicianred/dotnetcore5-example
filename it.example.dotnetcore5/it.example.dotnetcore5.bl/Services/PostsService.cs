@@ -21,9 +21,9 @@ namespace it.example.dotnetcore5.bl.Services
             _postsRepository = postsRepository;
         }
 
-        public void Add(IPost entry)
+        public IPost AddPost(IPost entry)
         {
-            _postsRepository.AddPost(entry);
+            return _postsRepository.AddPost(entry);
         }
 
         /// <summary>

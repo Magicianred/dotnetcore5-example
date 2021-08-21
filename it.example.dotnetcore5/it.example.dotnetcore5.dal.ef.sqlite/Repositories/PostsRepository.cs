@@ -51,10 +51,19 @@ namespace it.example.dotnetcore5.dal.ef.sqlite.Repositories
         /// Save the post in database
         /// </summary>
         /// <param name="item">post to save</param>
-        public void AddPost(IPost item)
+        public IPost AddPost(IPost item)
         {
             var entry = ((ModelPost)item).ToEfEntity();
             _context.Posts.Add(entry);
+            _context.SaveChanges();
+
+            return entry.ToModelDomain();
+        }
+
+        public void RemoveAll()
+        {
+            var posts = _context.Posts.ToList();
+            _context.Posts.RemoveRange(posts);
             _context.SaveChanges();
         }
     }
